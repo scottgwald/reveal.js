@@ -63,8 +63,16 @@ module.exports = function(grunt) {
 			}
 		},
 
+		sass: {
+			dist: {
+				files: {
+					'plugin/reveal-sync/css/reveal-sync.css':'plugin/reveal-sync/css/reveal-sync.scss'
+				}
+			}
+		},
+
 		watch: {
-			files: [ 'Gruntfile.js', 'js/reveal.js', 'css/reveal.css' ],
+			files: [ 'Gruntfile.js', 'js/reveal.js', 'css/reveal.css','plugin/reveal-sync/css/reveal-sync.scss' ],
 			tasks: 'default'
 		}
 
@@ -75,8 +83,9 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
+	grunt.loadNpmTasks('grunt-contrib-sass');
 
 	// Default task
-	grunt.registerTask( 'default', [ 'jshint', 'cssmin', 'uglify' ] );
+	grunt.registerTask( 'default', [ 'jshint', 'cssmin', 'uglify','sass' ] );
 
 };

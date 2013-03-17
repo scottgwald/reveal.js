@@ -10,7 +10,8 @@ REMOTE CONTROL
 *****/
 
 console.log(io);
-var remoteServer = 'localhost';
+// var remoteServer = 'localhost';
+var remoteServer = "remote-slideshow.herokuapp.com";
 
 var socket = io.connect(remoteServer, {port:80});
     socket.on('next slide', function () {

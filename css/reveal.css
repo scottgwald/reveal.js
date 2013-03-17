@@ -586,6 +586,51 @@ body {
 	                    opacity 800ms cubic-bezier(0.260, 0.860, 0.440, 0.985);
 }
 
+.reveal .slides>section img[alt|="fullsize"],
+.reveal .slides>section>section img[alt|="fullsize"] {
+	padding: 0px 0px !important;
+	margin: 0px 0px !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	border-width: 0px !important;
+	box-shadow: 0 0 0px rgba(0, 0, 0, 0);
+/*	top: 0px !important;
+	opacity: 0.5;
+	position: fixed;
+	z-index: 30;
+	right: 10px;
+	bottom: 10px;
+*/}
+
+.reveal .slides>section img[alt="fullsize-portrait"],
+.reveal .slides>section>section img[alt="fullsize-portrait"] {
+/*	padding: 0px 0px !important;
+	margin: 0px 0px !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	border-width: 0px !important;
+*/	height: 100% !important;
+}
+
+.reveal .slides>section img[alt="fullsize-landscape"],
+.reveal .slides>section>section img[alt="fullsize-landscape"] {
+/*	padding: 0px 0px !important;
+	margin: 0px 0px !important;
+	max-width: 100% !important;
+	max-height: 100% !important;
+	border-width: 0px !important;
+*/	width: 100% !important;
+}
+
+.reveal .slides>section>section.fullsize,
+.reveal .slides>section.fullsize {
+	padding: 0px 0px !important;
+}
+
+.reveal .slides .padded {
+	border-width: 40px;
+}
+
 .reveal .slides>section {
 	left: -50%;
 	top: -50%;

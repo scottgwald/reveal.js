@@ -19,14 +19,17 @@ var Reveal = (function(){
 
 			// The "normal" size of the presentation, aspect ratio will be preserved
 			// when the presentation is scaled to fit different resolutions
-			width: 960,
-			height: 700,
+			// [swgreen] hopefully this will be interpreted as percentage
+			width: '100%',
+			height: '100%',
+			// width: 960,
+			// height: 700,
 
 			// Factor of the display size that should remain empty around the content
-			margin: 0.1,
+			margin: 0.0, //0.1
 
 			// Bounds for smallest/largest possible scale to apply to content
-			minScale: 0.2,
+			minScale: 0.2, //0.2,
 			maxScale: 1.0,
 
 			// Display controls in the bottom right corner
@@ -702,8 +705,13 @@ var Reveal = (function(){
 
 			}
 
-		}
+		};
 
+		// $('#myprecious').css({padding:'0px 0px', margin:'0px 0px','max-width':"100%",'max-height':"100%",'border-width':'0px'})
+  //               .height("100%");
+
+		// $('#myprecious1').css({padding:'0px 0px', margin:'0px 0px','max-width':"100%",'max-height':"100%",'border-width':'0px'})
+  //               .width("100%");
 	}
 
 	/**
