@@ -1,4 +1,4 @@
-window.console.log("hello from swgreen.js"); // works, appears to require 'window'
+window.console.log("hello from reveal-sync.js"); // works, appears to require 'window'
 // check that dependency has been loaded
 
 var options = {
@@ -10,10 +10,10 @@ REMOTE CONTROL
 *****/
 
 console.log(io);
-// var remoteServer = 'localhost';
-var remoteServer = "remote-slideshow.herokuapp.com";
+// var remoteServer = {url:'remote-slideshow.herokuapp.com',port:''};
+var remoteServer = {url:'localhost',port:''};
 
-var socket = io.connect(remoteServer, {port:80});
+var socket = io.connect(remoteServer.url, {port:remoteServer.port});
     socket.on('next slide', function () {
         console.log("Got 'next slide' from socket.");
         Reveal.next();
@@ -42,7 +42,16 @@ var socket = io.connect(remoteServer, {port:80});
     	}
     });
 
-    socket.on('serverLog', function(data) {console.log("serverLog: "+data.message)});
+    socket.on('serverLog', function(data) {
+        var theMessage = '';
+        if (data.message === undefined) {
+            console.log("Using JSON.stringify on serverLog data.");
+            theMessage = JSON.stringify(data);
+        } else {
+            theMessage = data.message;
+        }
+        console.log("serverLog: "+theMessage);
+    });
 
     if (options.statusDots) {
         socket.on('connect', function() {$('.reveal .socket-status')[0].classList.add('enabled');});
@@ -153,7 +162,7 @@ var commandArbiter = (function(){
 Socket Status Dot
 *****/
 
-var pathToStylesheet = "plugin/swgreen/css/swgreen.css";
+var pathToStylesheet = "plugin/reveal-sync/css/reveal-sync.css";
 
 // when do attribute names need to be quoted?? 
 // 
@@ -199,4 +208,15 @@ Reveal.slide = function(h,v,f,options) {
     oldSlide(h,v,f);
 }
 
+/*****
+size my image
+*****/
 
+
+// $('.reveal .fullsize').each(function(index){
+//     this.classList.add('fillheight');
+// });
+
+// $('#myprecious').style({padding:'0px 0px', margin:'0px 0px','max-width':"100%",'max-height':"100%"})
+//                 .width("100%")
+//                 .height("100%");
