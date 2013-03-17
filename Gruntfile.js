@@ -15,10 +15,6 @@ module.exports = function(grunt) {
 				' */'
 		},
 
-		jshint: {
-			files: [ 'Gruntfile.js', 'js/reveal.js' ]
-		},
-
 		// Tests will be added soon
 		qunit: {
 			files: [ 'test/**/*.html' ]
@@ -42,6 +38,21 @@ module.exports = function(grunt) {
 			}
 		},
 
+		sass: {
+			main: {
+				files: {
+					'css/theme/default.css': 'css/theme/source/default.scss',
+					'css/theme/beige.css': 'css/theme/source/beige.scss',
+					'css/theme/night.css': 'css/theme/source/night.scss',
+					'css/theme/serif.css': 'css/theme/source/serif.scss',
+					'css/theme/simple.css': 'css/theme/source/simple.scss',
+					'css/theme/sky.css': 'css/theme/source/sky.scss',
+					'css/theme/moon.css': 'css/theme/source/moon.scss',
+					'css/theme/solarized.css': 'css/theme/source/solarized.scss'
+				}
+			}
+		},
+
 		jshint: {
 			options: {
 				curly: false,
@@ -54,13 +65,14 @@ module.exports = function(grunt) {
 				undef: true,
 				eqnull: true,
 				browser: true,
-				expr: true
+				expr: true,
+				globals: {
+					head: false,
+					module: false,
+					console: false
+				}
 			},
-			globals: {
-				head: false,
-				module: false,
-				console: false
-			}
+			files: [ 'Gruntfile.js', 'js/reveal.js' ]
 		},
 
 		sass: {
@@ -72,10 +84,15 @@ module.exports = function(grunt) {
 		},
 
 		watch: {
-			files: [ 'Gruntfile.js', 'js/reveal.js', 'css/reveal.css','plugin/reveal-sync/css/reveal-sync.scss' ],
-			tasks: 'default'
+			main: {
+				files: [ 'Gruntfile.js', 'js/reveal.js', 'css/reveal.css', 'plugin/reveal-sync/css/reveal-sync.scss' ],
+				tasks: 'default'
+			},
+			theme: {
+				files: [ 'css/theme/source/*.scss', 'css/theme/template/*.scss' ],
+				tasks: 'themes'
+			}
 		}
-
 	});
 
 	// Dependencies
@@ -83,9 +100,12 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks( 'grunt-contrib-cssmin' );
 	grunt.loadNpmTasks( 'grunt-contrib-uglify' );
 	grunt.loadNpmTasks( 'grunt-contrib-watch' );
-	grunt.loadNpmTasks('grunt-contrib-sass');
+	grunt.loadNpmTasks( 'grunt-contrib-sass' );
 
 	// Default task
 	grunt.registerTask( 'default', [ 'jshint', 'cssmin', 'uglify','sass' ] );
+
+	// Theme task
+	grunt.registerTask( 'themes', [ 'sass' ] );
 
 };
